@@ -1,0 +1,19 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.26979 18.7843L5.7418 13.4935H19.0275L17.4995 18.7844C17.1906 19.8542 16.2112 20.5907 15.0977 20.5907H9.67163C8.55807 20.5907 7.57876 19.8542 7.26979 18.7843Z" stroke="black"/>
+<rect x="2" y="10.1227" width="20" height="4.04858" rx="2.02429" fill="#FFBD2F"/>
+<rect x="9.77271" y="16.7631" width="3.78469" height="1.72727" rx="0.863636" transform="rotate(-90 9.77271 16.7631)" fill="#FFBD2F" stroke="#FFBD2F"/>
+<path d="M5.84613 12.5518L5.84613 9.79878C5.84613 6.4001 8.6013 3.64493 12 3.64493C15.3987 3.64493 18.1538 6.4001 18.1538 9.79878L18.1538 12.5518L5.84613 12.5518Z" fill="#FFBD2F"/>
+<line x1="11.5" y1="5.27985" x2="11.5" y2="3.40903" stroke="white" stroke-linecap="round"/>
+<line x1="0.5" y1="-0.5" x2="2.26386" y2="-0.5" transform="matrix(0.854562 -0.519349 0.480897 0.876777 15.6364 7.21527)" stroke="white" stroke-linecap="round"/>
+<line x1="0.5" y1="-0.5" x2="2.26386" y2="-0.5" transform="matrix(-0.854562 -0.519349 -0.480897 0.876777 7.99823 7.21527)" stroke="white" stroke-linecap="round"/>
+</svg>
+
+
+
+
+
+
+
+
+
+
