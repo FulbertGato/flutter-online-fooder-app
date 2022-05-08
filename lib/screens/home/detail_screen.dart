@@ -2,10 +2,9 @@ import 'package:customer_app/models/burger.dart';
 import 'package:customer_app/services/cart/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../config/config.dart';
-import '../../config/route.dart';
+
 import '../../models/cartItem.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -358,7 +357,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ),
                         onPressed: () {                       
-                          CartService.addItem(widget.burger);
+                          CartService.addItem(Burger.burgerToProduct(widget.burger));
 
                           // success dialog
                           showDialog(

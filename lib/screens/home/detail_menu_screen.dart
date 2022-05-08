@@ -1,3 +1,4 @@
+import 'package:customer_app/services/cart/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,10 +6,15 @@ import 'package:flutter_svg/svg.dart';
 import '../../config/config.dart';
 import '../../models/menu.dart';
 
-class DetailMenuScreen extends StatelessWidget {
+class DetailMenuScreen extends StatefulWidget {
   Menu menu;
   DetailMenuScreen({Key? key, required this.menu}) : super(key: key);
 
+  @override
+  State<DetailMenuScreen> createState() => _DetailMenuScreenState();
+}
+
+class _DetailMenuScreenState extends State<DetailMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +42,7 @@ class DetailMenuScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Detail Menu : '+menu.title,
+                            'Detail Menu : '+widget.menu.title,
                             style:
                                 Theme.of(context).textTheme.headline6!.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -101,7 +107,7 @@ class DetailMenuScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    menu.title,
+                                    widget.menu.title,
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline4!
@@ -119,7 +125,7 @@ class DetailMenuScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'CFA ' + menu.prix.toString(),
+                                  'CFA ' + widget.menu.prix.toString(),
                                   style: Theme.of(context).textTheme.headline4,
                                 ),
                                 
@@ -145,7 +151,7 @@ class DetailMenuScreen extends StatelessWidget {
                                 width: 16.w,
                               ),
                               Text(
-                                menu.duration,
+                                widget.menu.duration,
                                 style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ],
@@ -210,7 +216,7 @@ class DetailMenuScreen extends StatelessWidget {
                         horizontal: 8.w,
                       ),
                       child: Row(
-                        children: List.generate(menu.complements.length, (index) => 
+                        children: List.generate(widget.menu.complements.length, (index) => 
                           Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 8.w,
@@ -280,7 +286,7 @@ class DetailMenuScreen extends StatelessWidget {
                       width: 24.w,
                     ),
                     Text(
-                      '\$12.00',
+                      widget.menu.prix.toString() + ' CFA',
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(
@@ -296,12 +302,30 @@ class DetailMenuScreen extends StatelessWidget {
                             Theme.of(context).textTheme.headline6,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          CartService.addItem(Menu.menuToProduct(widget.menu));
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Success'),
+                              content: Text('Burger added to cart'),
+                              actions: [
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                          setState(() {});
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              'Place order',
+                              'Ajouter au panier',
                             ),
                             SizedBox(
                               width: 16.w,
@@ -315,9 +339,9 @@ class DetailMenuScreen extends StatelessWidget {
                                   4.r,
                                 ),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
-                                  '2',
+                                  CartService.cartItemMap.length.toString(),
                                 ),
                               ),
                             )

@@ -1,6 +1,8 @@
 import 'package:customer_app/models/burger.dart';
 import 'package:customer_app/models/complement.dart';
 
+import 'product.dart';
+
 class Menu {
   final String imgPath;
   final String title;
@@ -31,7 +33,7 @@ class Menu {
     for (var element in (json['complements'] as List)) {
       _complements.add(Complement.fromJson(element));
     }
-    
+
     return Menu(
       imgPath: "assets/img/food/tamago.png",
       title: json['name'] as String,
@@ -44,11 +46,20 @@ class Menu {
       code: json['code'] as String,
       complements: _complements,
     );
-    
   }
 
   static List<Menu> menuFromSnapshot(List snapshot) {
-
     return snapshot.map((data) => Menu.fromJson(data)).toList();
+  }
+
+  static Product menuToProduct(Menu menu) {
+    return Product(
+      imgPath: menu.imgPath,
+      title: menu.title,
+      desc: menu.desc,
+      duration: menu.duration,
+      prix: menu.prix,
+      code: menu.code,
+    );
   }
 }

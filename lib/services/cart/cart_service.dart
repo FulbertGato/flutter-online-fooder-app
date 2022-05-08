@@ -1,4 +1,5 @@
-import 'package:customer_app/models/burger.dart';
+
+import 'package:customer_app/models/product.dart';
 
 import '../../models/cartItem.dart';
 
@@ -16,7 +17,7 @@ class CartService {
   }
 
   //ajouter un item au panier
-  static void addItem(Burger burger) {
+  static void addItem(Product burger) {
     CartItem cartItem = CartItem(
       imgPath: "assets/img/burger.png",
       title: burger.title,

@@ -1,3 +1,5 @@
+import 'package:customer_app/models/product.dart';
+
 class Burger {
   final String imgPath;
   final String title;
@@ -7,7 +9,7 @@ class Burger {
   final String delivery;
   final String rating;
   final String code;
-  
+
   Burger({
     required this.imgPath,
     required this.title,
@@ -32,6 +34,17 @@ class Burger {
   }
   static List<Burger> burgerFromSnapshot(List snapshot) {
     return snapshot.map((data) => Burger.fromJson(data)).toList();
+  }
+
+  static Product burgerToProduct(Burger burger) {
+    return Product(
+      imgPath: burger.imgPath,
+      title: burger.title,
+      desc: burger.desc,
+      duration: burger.duration,
+      prix: burger.prix,
+      code: burger.code,
+    );
   }
 
   @override
