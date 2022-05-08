@@ -9,6 +9,7 @@ typedef PageDetail = Map<String, Object>;
 
 class OnboardingScreen extends StatelessWidget {
   final pageController = PageController();
+  OnboardingScreen({Key? key}) : super(key: key);
 
   final List<PageDetail> pages = [
     {
@@ -37,6 +38,8 @@ class OnboardingScreen extends StatelessWidget {
     },
   ];
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +57,7 @@ class OnboardingScreen extends StatelessWidget {
 }
 
 class PageScaffold extends StatelessWidget {
-  const PageScaffold(this.pageDetail, this.pageController);
+   const PageScaffold(this.pageDetail, this.pageController, {Key? key}) : super(key: key);
 
   final PageDetail pageDetail;
   final PageController pageController;
@@ -81,7 +84,7 @@ class PageScaffold extends StatelessWidget {
           ),
           Column(
             children: [
-              Spacer(
+              const Spacer(
                 flex: 1,
               ),
               SizedBox(
@@ -92,7 +95,7 @@ class PageScaffold extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 5,
               ),
               Padding(
@@ -106,7 +109,7 @@ class PageScaffold extends StatelessWidget {
                               Navigator.of(context)
                                   .pushReplacementNamed(RouteGenerator.login);
                             },
-                            child: Text('Get started'),
+                            child: const Text('Get started'),
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
                                 Config.colors.kTextBlack,
@@ -128,7 +131,7 @@ class PageScaffold extends StatelessWidget {
                               ? TextButton(
                                   onPressed: () {
                                     pageController.previousPage(
-                                        duration: Duration(milliseconds: 300),
+                                        duration: const Duration(milliseconds: 300),
                                         curve: Curves.easeInOut);
                                   },
                                   child: Text(
@@ -148,10 +151,10 @@ class PageScaffold extends StatelessWidget {
                           TextButton(
                             onPressed: () {
                               pageController.nextPage(
-                                  duration: Duration(milliseconds: 300),
+                                  duration: const Duration(milliseconds: 300),
                                   curve: Curves.easeInOut);
                             },
-                            child: Text(
+                            child: const Text(
                               'Next',
                             ),
                           ),

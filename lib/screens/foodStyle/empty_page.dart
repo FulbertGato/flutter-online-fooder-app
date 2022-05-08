@@ -25,7 +25,7 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SearchBar(),
+        const SearchBar(),
         SizedBox(
           height: 32.h,
         ),
@@ -101,7 +101,7 @@ class EmptyPage extends StatelessWidget {
 }
 
 class SuggestionCard extends StatelessWidget {
-  const SuggestionCard(this.suggestion);
+   const SuggestionCard(this.suggestion, {Key? key}) : super(key: key);
 
   final Suggestion suggestion;
 
@@ -156,7 +156,7 @@ class SuggestionCard extends StatelessWidget {
                     ),
                     Text(
                       '${suggestion.totalPeople} people',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -174,7 +174,7 @@ class SuggestionCard extends StatelessWidget {
               shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.r),
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: Colors.black,
                   ),
                 ),
@@ -197,7 +197,7 @@ class SuggestionCard extends StatelessWidget {
                 SizedBox(
                   width: 8.w,
                 ),
-                Text(
+                const Text(
                   'Add to order',
                 ),
               ],

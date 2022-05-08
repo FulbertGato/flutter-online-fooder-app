@@ -4,7 +4,7 @@ import '../config/config.dart';
 
 
 class CustomInputField extends StatelessWidget {
-  const CustomInputField({
+   const CustomInputField({Key? key, 
     required this.labelText,
     this.textInputAction,
     this.onSubmitted,
@@ -14,7 +14,7 @@ class CustomInputField extends StatelessWidget {
     this.hasError = false,
     required this.hintText,
     required this.assetName
-  });
+  }) : super(key: key);
 
   final String labelText;
   final String hintText;

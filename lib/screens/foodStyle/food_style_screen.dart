@@ -6,6 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../bloc/styleBloc/style_bloc.dart';
+
+
+
 class FoodStyleScreen extends StatelessWidget {
   const FoodStyleScreen({ Key? key }) : super(key: key);
 
@@ -13,14 +16,15 @@ class FoodStyleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => StyleBloc(),
-      child: Child(),
+      child: const Child(),
     );
   }
 }
 
 class Child extends StatelessWidget {
-  const Child();
+  const Child({Key? key}) : super(key: key);
 
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,12 +67,10 @@ class Child extends StatelessWidget {
                   duration: const Duration(milliseconds: 300),
                   switchInCurve: Curves.easeInOut,
                   switchOutCurve: Curves.easeInOut,
-                  child: state.isEmpty
-                      ? Padding(
+                  child: state.isEmpty ? 
+                      Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                          child: const StylePage(),
-                        )
-                      : const EmptyPage() ,
+                          child: const StylePage(),)  :  const EmptyPage(),
                 );
               },
             )

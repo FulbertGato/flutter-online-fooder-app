@@ -5,10 +5,10 @@ import '../../config/config.dart';
 import '../../models/burger.dart';
 
 class FoodCard extends StatelessWidget {
-  const FoodCard({
+   const FoodCard({Key? key, 
     required this.food,
     this.onTap,
-  });
+  }) : super(key: key);
 
   final Burger food;
   final void Function()? onTap;

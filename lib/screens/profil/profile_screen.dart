@@ -159,7 +159,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
 }
 
 class InfoCard extends StatelessWidget {
-  const InfoCard(this.info, {this.isLast = false});
+   const InfoCard(this.info, {Key? key, this.isLast = false}) : super(key: key);
 
   final Info info;
   final bool isLast;

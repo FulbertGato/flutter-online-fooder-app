@@ -26,11 +26,11 @@ class BurgerService {
     mazo.then((value) {
       for (var i in value) {
         _temp.add(i);
-        print(i);
+        
         
       }
     });
-    print("je sort du service");
+    
     return _temp;
   }
 }

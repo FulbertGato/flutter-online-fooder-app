@@ -12,6 +12,7 @@ class AppTheme {
     return ThemeData(
       primarySwatch: Colors.yellow,
       primaryColor: Config.colors.kPrimary,
+      // ignore: deprecated_member_use
       buttonColor: Config.colors.kPrimary,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(

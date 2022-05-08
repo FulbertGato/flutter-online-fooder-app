@@ -6,7 +6,7 @@ import '../../widgets/authentication/auth_widget.dart';
 import '../../widgets/custom_input_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LoginScreen extends StatefulWidget {
-  const LoginScreen();
+   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -145,20 +145,20 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 16.h,
         ),
-        FacebookButton(),
+        const FacebookButton(),
         TextButton(
           onPressed: () =>
               Navigator.of(context).pushReplacementNamed(RouteGenerator.main),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-               const Text(
+            children: const [
+               Text(
                 'Don\'t have an account? ',
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                 ),
               ),
-             const  Text(
+             Text(
                 'Register',
               ),
             ],

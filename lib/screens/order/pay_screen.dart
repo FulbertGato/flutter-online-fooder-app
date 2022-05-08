@@ -1,3 +1,4 @@
+import 'package:customer_app/services/cart/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class PayScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Checkout order',
+                            'Passez à la caisse',
                             style:
                                 Theme.of(context).textTheme.bodyText2!.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class PayScreen extends StatelessWidget {
                         horizontal: 8.0.w,
                       ),
                       child: Text(
-                        'SELECT ADDRESS',
+                        'Adresse de livraison',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Config.colors.kTextGrey1,
@@ -71,8 +72,7 @@ class PayScreen extends StatelessWidget {
                         horizontal: 8.0.w,
                       ),
                       child: GestureDetector(
-                        onTap: () => Navigator.of(context)
-                            .pushNamed(RouteGenerator.main),
+                        onTap: () => {},
                         child: Row(
                           children: [
                             Expanded(
@@ -80,14 +80,14 @@ class PayScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Farhan Fauzan',
+                                    'Brazil Dakar - Senegal',
                                     style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   const Text(
-                                    '4536 Northwest Boulevard, NJ',
+                                    '12 avenue de brazil burger',
                                   ),
                                 ],
                               ),
@@ -105,8 +105,8 @@ class PayScreen extends StatelessWidget {
                                 ),
                               ),
                               child: const Text(
-                                'Home',
-                                style: const TextStyle(
+                                'Pickup',
+                                style:  TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
@@ -125,81 +125,6 @@ class PayScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 8.0.w,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                          6.r,
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          height: 72.h,
-                          decoration: BoxDecoration(
-                            color: Config.colors.kPrimaryLight,
-                            borderRadius: BorderRadius.circular(
-                              6.r,
-                            ),
-                          ),
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                right: -50,
-                                top: -30,
-                                child: Container(
-                                  width: 231.w,
-                                  height: 231.w,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Config.colors.kPrimary.withOpacity(0.1),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 24.0.w,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const Expanded(
-                                        child: Text(
-                                          'Cashback 50% Black Friday',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 80.w,
-                                        height: 24.h,
-                                        child: Stack(
-                                          children: [
-                                            SvgPicture.asset(
-                                              'assets/img/coupon.svg',
-                                            ),
-                                            Center(
-                                              child: Text(
-                                                '2 Coupon',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
                     SizedBox(
                       height: 16.h,
                     ),
@@ -208,8 +133,7 @@ class PayScreen extends StatelessWidget {
                         horizontal: 8.0.w,
                       ),
                       child: GestureDetector(
-                        onTap: () => Navigator.of(context)
-                            .pushNamed(RouteGenerator.main),
+                        onTap: () => {},
                         child: Row(
                           children: [
                             SvgPicture.asset(
@@ -221,7 +145,7 @@ class PayScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                'Pay Cash',
+                                'Payé Cash a la livraison',
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline6!
@@ -231,7 +155,7 @@ class PayScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Fee: ',
+                              'Frais: ',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6!
@@ -240,7 +164,7 @@ class PayScreen extends StatelessWidget {
                                   ),
                             ),
                             Text(
-                              '\$0.00',
+                              '0 FCFA',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2!
@@ -269,6 +193,7 @@ class PayScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
+                   
                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 8.0.w,
@@ -277,41 +202,7 @@ class PayScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            'ORDER ID',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Config.colors.kTextGrey1,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          const Desc(
-                            title: 'Order Id',
-                            info: 'FDS-7850-37676-CDXX',
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          const Desc(
-                            title: 'Order date',
-                            info: 'Today, 08:00',
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      height: 64.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 8.0.w,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            'ORDER DETAILS',
+                            'Details de la commande',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Config.colors.kTextGrey1,
@@ -327,17 +218,7 @@ class PayScreen extends StatelessWidget {
                           SizedBox(
                             height: 16.h,
                           ),
-                          const Desc(
-                            title: 'Fresh Tamagoyaki',
-                            info: 'x  1',
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          const Desc(
-                            title: 'Sushite',
-                            info: 'x  1',
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -369,7 +250,7 @@ class PayScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Total order:',
+                          'Total :',
                           style:
                               Theme.of(context).textTheme.headline6!.copyWith(
                                     color: Config.colors.kTextGrey1,
@@ -391,12 +272,12 @@ class PayScreen extends StatelessWidget {
                           color: Config.colors.kPrimaryLight,
                         ),
                         child: Text(
-                          'Free delivery',
+                          'Livraison gratuite',
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                       Text(
-                        '\$17.66',
+                        CartService.getTotal().toString() + ' FCFA',
                         style: Theme.of(context).textTheme.headline5!.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -415,14 +296,15 @@ class PayScreen extends StatelessWidget {
                         Theme.of(context).textTheme.headline6,
                       ),
                     ),
-                    onPressed: () => Navigator.of(context).pushReplacementNamed(
-                      RouteGenerator.successOrder,
-                    ),
+                    onPressed: () => {                     
+                      Navigator.of(context).pushReplacementNamed(
+                      RouteGenerator.successOrder),
+                      },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          'Pay now',
+                          'Payer maintenant',
                         ),
                         SizedBox(
                           width: 16.w,
@@ -436,9 +318,9 @@ class PayScreen extends StatelessWidget {
                               4.r,
                             ),
                           ),
-                          child: const Center(
+                          child:  Center(
                             child: Text(
-                              '4',
+                             CartService.cartItemMap.length.toString(),
                             ),
                           ),
                         )
@@ -456,10 +338,10 @@ class PayScreen extends StatelessWidget {
 }
 
 class Desc extends StatelessWidget {
-  const Desc({
+  const Desc({Key? key, 
     required this.title,
     required this.info,
-  });
+  }) : super(key: key);
 
   final String title;
   final String info;

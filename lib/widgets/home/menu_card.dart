@@ -5,10 +5,10 @@ import '../../config/config.dart';
 import '../../models/menu.dart';
 
 class MenuCard extends StatelessWidget {
-  const MenuCard({
+   const MenuCard({Key? key, 
     required this.menu,
     this.onTap,
-  });
+  }) : super(key: key);
 
   final Menu menu;
   final void Function()? onTap;

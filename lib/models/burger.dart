@@ -6,7 +6,8 @@ class Burger {
   final double prix;
   final String delivery;
   final String rating;
-
+  final String code;
+  
   Burger({
     required this.imgPath,
     required this.title,
@@ -14,7 +15,8 @@ class Burger {
     required this.duration,
     required this.prix,
     required this.delivery,
-     this.rating = '4.5',
+    required this.code,
+    this.rating = '4.5',
   });
 
   factory Burger.fromJson(dynamic json) {
@@ -25,11 +27,10 @@ class Burger {
       duration: json['cookingTime'] as String,
       prix: json['price'] as double,
       delivery: "hu",
-      
+      code: json['code'] as String,
     );
   }
   static List<Burger> burgerFromSnapshot(List snapshot) {
-
     return snapshot.map((data) => Burger.fromJson(data)).toList();
   }
 

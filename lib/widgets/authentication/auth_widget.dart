@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 
 class AuthScaffold extends StatelessWidget {
-  const AuthScaffold({
+   const AuthScaffold({Key? key, 
     required this.title1,
     required this.title2,
     required this.children,
-  });
+  }) : super(key: key);
 
   final List<Widget> children;
   final String title1;

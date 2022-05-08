@@ -10,22 +10,14 @@ import '../../services/menus/menu_service.dart';
 import '../../widgets/home/food_card.dart';
 import '../../widgets/home/menu_card.dart';
 import '../../widgets/search_bar.dart';
-
-
-
-
-
-
-
-
   Future<List<Burger>> getBurgesList() async {
     List<Burger>  _burgers = await BurgerService.getAllBurgers();
       return _burgers;
     }
 
     Future<List<Menu>> getMenuList() async {
-    List<Menu>  Menus = await MenuService.getAllMenus();
-      return Menus;
+     List<Menu>  menus = await MenuService.getAllMenus();
+      return menus;
     }
   
     final List<Burger> foods = BurgerService.getBurgersFatigue(getBurgesList());

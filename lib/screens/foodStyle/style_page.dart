@@ -4,45 +4,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../config/config.dart';
+import '../../config/route.dart';
+import '../../models/menu.dart';
+import '../../services/burgers/burger_service.dart';
+import '../../services/menus/menu_service.dart';
 import '../../widgets/home/food_card.dart';
+import '../../widgets/home/menu_card.dart';
 
-final List<Burger> breakfasts = [
-  Burger(
-    imgPath: 'assets/img/food/tamago.png',
-    desc: 'A delicious egg food from Japan',
-    delivery: 'Free delivery',
-    duration: '10 min',
-    prix: 500,
-    title: 'Burger Tamago',
-  ),
-  Burger(
-    imgPath: 'assets/img/food/okonomiyaki.png',
-    desc: '\'unagi\' is the Japanese western food.',
-    delivery: 'Free delivery',
-    duration: '10 min',
-    prix: 5000,
-    title: 'Burger Enma',
-  ),
-];
 
-final List<Burger> lunches = [
-  Burger(
-    imgPath: 'assets/img/food/tempura.png',
-    desc: 'A delicious egg food from Japan',
-    delivery: 'Free delivery',
-    duration: '10 min',
-    prix: 5000,
-    title: 'Menu Enma',
-  ),
-  Burger(
-    imgPath: 'assets/img/food/donburi.png',
-    desc: '\'unagi\' is the Japanese western food.',
-    delivery: 'Free delivery',
-    duration: '10 min',
-    prix: 5000,
-    title: 'Menu gras',
-  ),
-];
+  Future<List<Burger>> getBurgesList() async {
+    List<Burger>  _burgers = await BurgerService.getAllBurgers();
+      return _burgers;
+    }
+
+    Future<List<Menu>> getMenuList() async {
+    List<Menu>  menus = await MenuService.getAllMenus();
+      return menus;
+    }
+  
+final List<Burger> breakfasts = BurgerService.getBurgersFatigue(getBurgesList());
+final List<Menu> lunches = MenuService.getMenusList(getMenuList());
+
+
 
 class StylePage extends StatelessWidget {
   const StylePage({ Key? key }) : super(key: key);
@@ -55,7 +38,7 @@ class StylePage extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: 8.0.w,
           ),
-          child: Container(
+          child: SizedBox(
             height: 110.h,
             width: double.infinity,
             child: Stack(
@@ -108,7 +91,7 @@ class StylePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Text(
+                              const Text(
                                 'Salut BG ! ',
                                 style: TextStyle(
                                   color: Colors.white,
@@ -173,7 +156,10 @@ class StylePage extends StatelessWidget {
             child: Row(
               children: List.generate(
                 breakfasts.length,
-                (index) => FoodCard(food: breakfasts[index]),
+                (index) => FoodCard(food: breakfasts[index],
+                onTap: () => Navigator.of(context)
+                          .pushNamed(RouteGenerator.details, arguments: breakfasts[index]),
+                ),
               ),
             ),
           ),
@@ -211,7 +197,11 @@ class StylePage extends StatelessWidget {
             child: Row(
               children: List.generate(
                 lunches.length,
-                (index) => FoodCard(food: lunches[index]),
+                (index) => MenuCard(menu: lunches[index],
+                
+                      onTap: () => Navigator.of(context)
+                          .pushNamed(RouteGenerator.detailsMenu, arguments: lunches[index])
+                ),
               ),
             ),
           ),

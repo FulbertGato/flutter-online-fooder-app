@@ -1,3 +1,4 @@
+import 'package:customer_app/services/cart/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,39 +7,22 @@ import 'package:flutter_svg/svg.dart';
 import '../../bloc/checkoutBloc/checkout_bloc.dart';
 import '../../config/config.dart';
 import '../../config/route.dart';
-import '../../models/checkout.dart';
+import '../../models/cartItem.dart';
 
-class Checkoutscreen extends StatelessWidget {
-  const Checkoutscreen({ Key? key }) : super(key: key);
+class Checkoutscreen extends StatefulWidget {
+  const Checkoutscreen({Key? key}) : super(key: key);
+  
+  @override
+  State<Checkoutscreen> createState() => _CheckoutscreenState();
+}
 
+class _CheckoutscreenState extends State<Checkoutscreen> {
+  int quantity = CartService.getCartQuantity();
+  Map<String, CartItem> checkoutsData = CartService.getCart()  ;
   @override
   Widget build(BuildContext context) {
-    final List<Checkout> checkouts = [
-      const Checkout(
-        shopName: 'Totsuki Elite',
-        shopPic: 'assets/img/totsuki.svg',
-        image: 'assets/img/food/tamago.png',
-        price: 6.00,
-        foods: ['Fresh Tamagoyaki'],
-        time: '10',
-      ),
-      const Checkout(
-        shopName: 'Shokugeki',
-        shopPic: 'assets/img/shoku.svg',
-        image: 'assets/img/food/okonomiyaki.png',
-        price: 3.66,
-        foods: ['Okanomiyaki'],
-        time: '7',
-      ),
-      Checkout(
-        shopName: 'Megumi',
-        shopPic: 'assets/img/megumi.svg',
-        image: 'assets/img/food/sushi.png',
-        price: 3.66,
-        foods: ['Sushite'],
-        time: '3',
-      ),
-    ];
+    
+    
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -59,7 +43,7 @@ class Checkoutscreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      'Checkout order',
+                      'Mon panier',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontWeight: FontWeight.bold,
@@ -83,10 +67,11 @@ class Checkoutscreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: List.generate(
-                    checkouts.length,
+                    checkoutsData.length,
                     (index) => BlocProvider(
                       create: (context) => CheckoutBloc(),
-                      child: CheckoutCard(checkouts[index]),
+                      child: CheckoutCard(
+                          checkoutsData.values.elementAt(index)),
                     ),
                   ),
                 ),
@@ -104,7 +89,7 @@ class Checkoutscreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 50.sp,
-                    offset: Offset(0, -8),
+                    offset: const Offset(0, -8),
                     color: Config.colors.kTextGrey3,
                   ),
                 ],
@@ -143,7 +128,7 @@ class Checkoutscreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '\$17.66',
+                        CartService.getTotal().toString(),
                         style: Theme.of(context).textTheme.headline5!.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -182,9 +167,9 @@ class Checkoutscreen extends StatelessWidget {
                               4.r,
                             ),
                           ),
-                          child: const  Center(
+                          child: Center(
                             child: Text(
-                              '4',
+                             CartService.cartItemMap.length.toString(),
                             ),
                           ),
                         )
@@ -201,11 +186,16 @@ class Checkoutscreen extends StatelessWidget {
   }
 }
 
-class CheckoutCard extends StatelessWidget {
-  const CheckoutCard(this.checkout);
+class CheckoutCard extends StatefulWidget {
+  CheckoutCard(this.checkout, {Key? key}) : super(key: key);
+  
+  CartItem checkout;
 
-  final Checkout checkout;
+  @override
+  State<CheckoutCard> createState() => _CheckoutCardState();
+}
 
+class _CheckoutCardState extends State<CheckoutCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -227,10 +217,10 @@ class CheckoutCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12.r),
-            child: Container(
+            child: SizedBox(
               width: 94.w,
               child: Image.asset(
-                checkout.image,
+                "assets/img/food/tamago.png",
               ),
             ),
           ),
@@ -247,7 +237,7 @@ class CheckoutCard extends StatelessWidget {
                       builder: (context, state) {
                         return Expanded(
                           child: Text(
-                            '${state.count}  x  ${checkout.foods[0]}',
+                            widget.checkout.title,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline6!
@@ -259,7 +249,7 @@ class CheckoutCard extends StatelessWidget {
                     BlocBuilder<CheckoutBloc, CheckoutState>(
                       builder: (context, state) {
                         return Text(
-                          '\$${(state.count * checkout.price).toStringAsFixed(2)}',
+                          widget.checkout.totalPrice.toString() + ' CFA',
                           style:
                               Theme.of(context).textTheme.headline6!.copyWith(
                                     color: Config.colors.kTextGrey1,
@@ -275,7 +265,7 @@ class CheckoutCard extends StatelessWidget {
                 Row(
                   children: [
                     SvgPicture.asset(
-                      checkout.shopPic,
+                      widget.checkout.shopPic,
                       width: 18.w,
                     ),
                     SizedBox(
@@ -283,7 +273,7 @@ class CheckoutCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        checkout.shopName,
+                        widget.checkout.shopName,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -298,7 +288,7 @@ class CheckoutCard extends StatelessWidget {
                             width: 16.w,
                           ),
                           Text(
-                            '${checkout.time} min',
+                            '${widget.checkout.duration} min',
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                         ],
@@ -315,10 +305,12 @@ class CheckoutCard extends StatelessWidget {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: () =>
-                                BlocProvider.of<CheckoutBloc>(context).add(
-                              Minus(),
-                            ),
+                            onTap: () => {
+                              CartService.removeItemByCode(
+                                  widget.checkout.code),
+                              setState(() => {}),
+                              
+                            },
                             child: SvgPicture.asset(
                               'assets/img/minus.svg',
                               width: 24.w,
@@ -338,7 +330,7 @@ class CheckoutCard extends StatelessWidget {
                             child: BlocBuilder<CheckoutBloc, CheckoutState>(
                               builder: (context, state) {
                                 return Text(
-                                  ' ${state.count} ',
+                                  widget.checkout.quantity.toString(),
                                   style: Theme.of(context).textTheme.headline6,
                                 );
                               },
@@ -348,10 +340,16 @@ class CheckoutCard extends StatelessWidget {
                             width: 16.w,
                           ),
                           GestureDetector(
-                            onTap: () =>
-                                BlocProvider.of<CheckoutBloc>(context).add(
-                              Add(),
-                            ),
+                            onTap: () => {
+                              // CartService.addItemByCode(widget.checkout.code),
+                              setState(
+                                () => {
+                                  // widget.checkout.quantity++,
+                                  CartService.addItemByCode(
+                                      widget.checkout.code)
+                                },
+                              )
+                            },
                             child: SvgPicture.asset(
                               'assets/img/add.svg',
                               width: 24.w,
@@ -363,9 +361,18 @@ class CheckoutCard extends StatelessWidget {
                     Expanded(
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            'assets/img/delete.svg',
-                            width: 16.w,
+                          GestureDetector(
+                            onTap: () => {
+                              setState(
+                                () => {
+                                  CartService.removeItem(widget.checkout.code),
+                                },
+                              )
+                            },
+                            child: SvgPicture.asset(
+                              'assets/img/delete.svg',
+                              width: 16.w,
+                            ),
                           ),
                         ],
                       ),

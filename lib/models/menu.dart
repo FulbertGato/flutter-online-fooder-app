@@ -28,10 +28,10 @@ class Menu {
 
   factory Menu.fromJson(dynamic json) {
     var _complements = <Complement>[];
-    (json['complements'] as List).forEach((element) {
+    for (var element in (json['complements'] as List)) {
       _complements.add(Complement.fromJson(element));
-    });
-    print(_complements);
+    }
+    
     return Menu(
       imgPath: "assets/img/food/tamago.png",
       title: json['name'] as String,

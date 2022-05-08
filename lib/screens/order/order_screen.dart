@@ -1,46 +1,18 @@
+import 'package:customer_app/services/cart/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../config/config.dart';
 import '../../config/route.dart';
-import '../../models/Order.dart';
+import '../../models/order.dart';
 
 class OrderScreen extends StatelessWidget {
   const OrderScreen({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<Order> orders = [
-      const Order(
-        foods: [
-          '2  x  Okonomiyaki',
-          '1  x  Fresh Tamagoyaki',
-        ],
-        price: '16.00',
-        shopName: 'Totsuki Elite',
-        shopPic: 'assets/img/totsuki.svg',
-        image: 'assets/img/food/okonomiyaki.png',
-      ),
-      const Order(
-        foods: [
-          '1  x  Karage Balls',
-        ],
-        price: '3.66',
-        shopName: 'Shokugeki',
-        shopPic: 'assets/img/shoku.svg',
-        image: 'assets/img/food/karageball.png',
-      ),
-      const Order(
-        foods: [
-          '1  x  Sushite',
-        ],
-        price: '2.57',
-        shopName: 'Megumi',
-        shopPic: 'assets/img/megumi.svg',
-        image: 'assets/img/food/sushi.png',
-      ),
-    ];
+    final List<Order> orders = [];
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -62,7 +34,7 @@ class OrderScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'READY TO CHECKOUT',
+                      'MON PANIER ',
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -81,7 +53,7 @@ class OrderScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'ORDER ON THE WAY',
+                      'Commande récentes',
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -105,10 +77,10 @@ class OrderScreen extends StatelessWidget {
 }
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({
+   const OrderCard({Key? key, 
     this.isLast = false,
     required this.order,
-  });
+  }) : super(key: key);
 
   final bool isLast;
   final Order order;
@@ -204,7 +176,7 @@ class OrderCard extends StatelessWidget {
 }
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard();
+   const CheckoutCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +215,7 @@ class CheckoutCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'View all order',
+                            'Voir mon panier',
                             style:
                                 Theme.of(context).textTheme.headline6!.copyWith(
                                       fontWeight: FontWeight.bold,
@@ -253,7 +225,7 @@ class CheckoutCard extends StatelessWidget {
                             height: 4.h,
                           ),
                           Text(
-                            '\$17.66',
+                            CartService.getTotal().toString(),
                             style: Theme.of(context).textTheme.headline6,
                           ),
                         ],

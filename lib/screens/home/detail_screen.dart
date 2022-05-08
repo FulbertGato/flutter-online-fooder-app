@@ -1,12 +1,17 @@
 import 'package:customer_app/models/burger.dart';
+import 'package:customer_app/services/cart/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../config/config.dart';
+import '../../config/route.dart';
+import '../../models/cartItem.dart';
 
 class DetailScreen extends StatefulWidget {
   Burger burger;
+  
+  static Map<String, CartItem> cartItemMap = {};
   DetailScreen({Key? key, required this.burger}) : super(key: key);
 
   @override
@@ -47,7 +52,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
-                          HeartToggle(),
+                          const HeartToggle(),
                         ],
                       ),
                     ),
@@ -75,7 +80,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            )],
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -158,7 +164,6 @@ class _DetailScreenState extends State<DetailScreen> {
                                   'CFA ' + widget.burger.prix.toString(),
                                   style: Theme.of(context).textTheme.headline4,
                                 ),
-                                
                               ],
                             )
                           ],
@@ -249,7 +254,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               vertical: 6.h,
                             ),
                             color: Config.colors.kPrimaryLight,
-                            child: Text(
+                            child: const Text(
                               'Breakfast',
                             ),
                           ),
@@ -262,7 +267,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               vertical: 6.h,
                             ),
                             color: Config.colors.kPrimaryLight,
-                            child: Text(
+                            child: const Text(
                               'Vegan',
                             ),
                           ),
@@ -275,7 +280,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               vertical: 6.h,
                             ),
                             color: Config.colors.kPrimaryLight,
-                            child: Text(
+                            child: const Text(
                               'African',
                             ),
                           )
@@ -286,7 +291,6 @@ class _DetailScreenState extends State<DetailScreen> {
                       color: Config.colors.kTextGrey2,
                       height: 64.h,
                     ),
-                   
                   ],
                 ),
               ),
@@ -307,7 +311,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 50.sp,
-                      offset: Offset(0, -8),
+                      offset: const Offset(0, -8),
                       color: Config.colors.kTextGrey3,
                     ),
                   ],
@@ -337,7 +341,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       width: 24.w,
                     ),
                     Text(
-                      widget.burger.prix.toString()+' CFA',
+                      widget.burger.prix.toString() + ' CFA',
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(
@@ -353,7 +357,31 @@ class _DetailScreenState extends State<DetailScreen> {
                             Theme.of(context).textTheme.headline6,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {                       
+                          CartService.addItem(widget.burger);
+
+                          // success dialog
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Success'),
+                              content: Text('Burger added to cart'),
+                              actions: [
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                          setState(() {});
+                          //afficher le panier
+                          //Navigator.of(context).pushNamed(RouteGenerator.checkout,);
+                          
+
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -372,9 +400,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                   4.r,
                                 ),
                               ),
-                              child: Center(
+                              child:  Center(
                                 child: Text(
-                                  '2',
+                                  CartService.cartItemMap.length.toString(),
                                 ),
                               ),
                             )
@@ -394,7 +422,7 @@ class _DetailScreenState extends State<DetailScreen> {
 }
 
 class HeartToggle extends StatefulWidget {
-  const HeartToggle();
+  const HeartToggle({Key? key}) : super(key: key);
 
   @override
   _HeartToggleState createState() => _HeartToggleState();

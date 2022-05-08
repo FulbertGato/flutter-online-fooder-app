@@ -71,7 +71,7 @@ class DetailMenuScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: 200.h,
                               width: 350.w,
                               child: ClipRRect(
@@ -250,7 +250,7 @@ class DetailMenuScreen extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 50.sp,
-                      offset: Offset(0, -8),
+                      offset: const Offset(0, -8),
                       color: Config.colors.kTextGrey3,
                     ),
                   ],
@@ -300,7 +300,7 @@ class DetailMenuScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               'Place order',
                             ),
                             SizedBox(
@@ -315,7 +315,7 @@ class DetailMenuScreen extends StatelessWidget {
                                   4.r,
                                 ),
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   '2',
                                 ),
@@ -337,7 +337,7 @@ class DetailMenuScreen extends StatelessWidget {
 }
 
 class HeartToggle extends StatefulWidget {
-  const HeartToggle();
+   const HeartToggle({Key? key}) : super(key: key);
 
   @override
   _HeartToggleState createState() => _HeartToggleState();

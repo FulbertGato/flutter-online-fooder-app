@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:customer_app/models/burger.dart';
 import 'package:http/http.dart' as http;
 
 import '../../models/menu.dart';
@@ -25,10 +23,10 @@ class MenuService {
     mazo.then((value) {
       for (var i in value) {
         _temp.add(i);
-        print(i);
+       
       }
     });
-    print("je sort du service");
+    
     return _temp;
   }
   
