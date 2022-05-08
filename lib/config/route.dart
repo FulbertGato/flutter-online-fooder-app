@@ -12,6 +12,8 @@ import '../screens/home/detail_screen.dart';
 import '../screens/initial/on_boarding.dart';
 import '../screens/initial/splash_screens.dart';
 import '../screens/order/checkout_screen.dart';
+import '../screens/order/order_status_screen.dart';
+import '../screens/order/order_tracking.dart';
 import '../screens/order/pay_screen.dart';
 import '../screens/order/success_order_screen.dart';
 import '../screens/tab_screen.dart';
@@ -27,11 +29,12 @@ class RouteGenerator {
   static const String checkout = '/checkout_screen';
   static const String successOrder = '/success_order_screen';
   static const String pay = '/pay_screen';
-
+  
   static const String verification = '/verification_screen';
   static const String signup = '/signup_screen';
   static const String survey = '/survey_screen';
-
+  static const String orderStatus = '/order_status_screen';
+  static const String orderTracking = '/order_tracking_screen';
   RouteGenerator._();
 
 
@@ -111,9 +114,20 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const SuccessOrderScreen(),
         );
+
+        case orderStatus:
+        return MaterialPageRoute(
+          builder: (_) => const OrderStatusScreen(),
+        );
+        
         case registered:
         return MaterialPageRoute(
           builder: (_) => const RegisterSuccessfulScreen(),
+        );
+
+        case orderTracking:
+        return MaterialPageRoute(
+          builder: (_) => const OrderTrackingScreen(),
         );
       default:
         throw const RouteException('Route not found');

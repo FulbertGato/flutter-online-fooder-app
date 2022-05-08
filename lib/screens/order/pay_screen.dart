@@ -298,9 +298,10 @@ class PayScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () => {    
-                      OrderService.createOrder(),                 
-                     /* Navigator.of(context).pushReplacementNamed(
-                      RouteGenerator.successOrder),*/
+                     // OrderService.createOrder(),
+
+                     Navigator.of(context).pushReplacementNamed(
+                      RouteGenerator.successOrder),
                       },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

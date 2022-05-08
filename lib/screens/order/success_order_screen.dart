@@ -73,7 +73,7 @@ class SuccessOrderScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () => Navigator.of(context)
-                          .pushNamed(RouteGenerator.main),
+                          .pushNamed(RouteGenerator.orderStatus ),
                       child: const Text('Track your order'),
                     ),
                   )
