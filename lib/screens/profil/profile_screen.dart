@@ -1,18 +1,19 @@
+import 'package:customer_app/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../config/config.dart';
 import '../../models/info.dart';
 import '../../widgets/home/custom_switcher.dart';
+
 class ProfilScreen extends StatefulWidget {
-  const ProfilScreen({ Key? key }) : super(key: key);
+  const ProfilScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfilScreen> createState() => _ProfilScreenState();
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
-  @override
   @override
   Widget build(BuildContext context) {
     final List<Info> infos = [
@@ -21,6 +22,14 @@ class _ProfilScreenState extends State<ProfilScreen> {
       Info('assets/img/info.svg', 'Information'),
       Info('assets/img/security.svg', 'Security'),
     ];
+
+    if (!authService.isLoggedIn) {
+      print('not logged in');
+      
+    } else {
+      print('logged in');
+      print(authService.user.email);
+    }
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
@@ -50,7 +59,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Farhan Fauzan',
+                          authService.user.toString(),
                           style: Theme.of(context).textTheme.headline4,
                         ),
                         Text(
@@ -159,7 +168,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
 }
 
 class InfoCard extends StatelessWidget {
-   const InfoCard(this.info, {Key? key, this.isLast = false}) : super(key: key);
+  const InfoCard(this.info, {Key? key, this.isLast = false}) : super(key: key);
 
   final Info info;
   final bool isLast;

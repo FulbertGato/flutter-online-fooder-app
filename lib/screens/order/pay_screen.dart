@@ -1,4 +1,5 @@
 import 'package:customer_app/services/cart/cart_service.dart';
+import 'package:customer_app/services/order/order_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -296,9 +297,10 @@ class PayScreen extends StatelessWidget {
                         Theme.of(context).textTheme.headline6,
                       ),
                     ),
-                    onPressed: () => {                     
-                      Navigator.of(context).pushReplacementNamed(
-                      RouteGenerator.successOrder),
+                    onPressed: () => {    
+                      OrderService.createOrder(),                 
+                     /* Navigator.of(context).pushReplacementNamed(
+                      RouteGenerator.successOrder),*/
                       },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

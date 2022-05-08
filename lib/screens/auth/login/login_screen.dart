@@ -1,9 +1,11 @@
+import 'package:customer_app/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
-import '../../../widgets/authentication/facebook_button.dart';
-import '../../config/config.dart';
-import '../../config/route.dart';
-import '../../widgets/authentication/auth_widget.dart';
-import '../../widgets/custom_input_field.dart';
+import '../../../../widgets/authentication/facebook_button.dart';
+import '../../../config/config.dart';
+import '../../../config/route.dart';
+import '../../../models/user.dart';
+import '../../../widgets/authentication/auth_widget.dart';
+import '../../../widgets/custom_input_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LoginScreen extends StatefulWidget {
    const LoginScreen({Key? key}) : super(key: key);
@@ -39,11 +41,11 @@ class _LoginScreenState extends State<LoginScreen> {
   bool authenticate() {
     String email = emailController.text;
     String password = pwController.text;
-
-    if (email == credential['email'] && password == credential['password']) {
+    authService.loginUser(User(email: email, password: password, firstName: '', phone: '', lastName: ''));
+    if (authService.isLoggedIn) {
       return true;
     } else {
-      return true;
+      return false;
     }
   }
 
@@ -148,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const FacebookButton(),
         TextButton(
           onPressed: () =>
-              Navigator.of(context).pushReplacementNamed(RouteGenerator.main),
+              Navigator.of(context).pushReplacementNamed(RouteGenerator.signup),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
