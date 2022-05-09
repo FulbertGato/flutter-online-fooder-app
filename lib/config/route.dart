@@ -15,6 +15,7 @@ import '../screens/order/checkout_screen.dart';
 import '../screens/order/order_status_screen.dart';
 import '../screens/order/order_tracking.dart';
 import '../screens/order/pay_screen.dart';
+import '../screens/order/payment_method_screen.dart';
 import '../screens/order/success_order_screen.dart';
 import '../screens/tab_screen.dart';
 
@@ -29,7 +30,8 @@ class RouteGenerator {
   static const String checkout = '/checkout_screen';
   static const String successOrder = '/success_order_screen';
   static const String pay = '/pay_screen';
-  
+  static const String paymentMethod = '/payment_method_screen';
+
   static const String verification = '/verification_screen';
   static const String signup = '/signup_screen';
   static const String survey = '/survey_screen';
@@ -128,6 +130,11 @@ class RouteGenerator {
         case orderTracking:
         return MaterialPageRoute(
           builder: (_) => const OrderTrackingScreen(),
+        );
+
+        case paymentMethod:
+        return MaterialPageRoute(
+          builder: (_) => const PaymentMethodScreen(),
         );
       default:
         throw const RouteException('Route not found');

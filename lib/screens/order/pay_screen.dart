@@ -134,7 +134,12 @@ class PayScreen extends StatelessWidget {
                         horizontal: 8.0.w,
                       ),
                       child: GestureDetector(
-                        onTap: () => {},
+                        onTap: () => {
+                          Navigator.of(context)
+                            .pushNamed(RouteGenerator.paymentMethod)
+                          
+                          
+                        },
                         child: Row(
                           children: [
                             SvgPicture.asset(
