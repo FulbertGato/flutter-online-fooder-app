@@ -23,7 +23,7 @@ class OrderService {
     var client_id = authService.user.id;
     var total_price = CartService.getTotal();
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:5000/api/order/'),
+      Uri.parse('https://urchin-app-3onl3.ondigitalocean.app/api/order/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -40,7 +40,7 @@ class OrderService {
   static Future<List<Order>> getMyOrders() async {
     var client_id = authService.user.id;
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:5000/api/order/client'),
+      Uri.parse('https://urchin-app-3onl3.ondigitalocean.app/api/order/client'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

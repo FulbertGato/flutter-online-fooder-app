@@ -5,7 +5,7 @@ import '../../models/menu.dart';
 
 class MenuService {
   static Future<List<Menu>> getAllMenus() async {
-    var uri = Uri.http('10.0.2.2:5000', '/api/menu');
+    var uri = Uri.https('urchin-app-3onl3.ondigitalocean.app', '/api/menu');
     final response = await http.get(uri, headers: {
       'Content-Type': 'application/json',
     });

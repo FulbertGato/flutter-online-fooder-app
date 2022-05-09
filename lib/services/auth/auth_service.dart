@@ -55,7 +55,7 @@ class authService {
   static Future<bool> loginUser(User user) async {
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:5000/api/auth/login'),
+      Uri.parse('https://urchin-app-3onl3.ondigitalocean.app/api/auth/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

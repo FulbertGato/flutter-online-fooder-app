@@ -23,7 +23,7 @@ class Burger {
 
   factory Burger.fromJson(dynamic json) {
     return Burger(
-      imgPath: "http://10.0.2.2:5000/${json['image']}",
+      imgPath: "https://urchin-app-3onl3.ondigitalocean.app/${json['image']}",
       title: json['name'] as String,
       desc: json['description'] as String,
       duration: json['cookingTime'] as String,

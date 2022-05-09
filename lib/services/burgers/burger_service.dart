@@ -7,7 +7,7 @@ class BurgerService {
   
 
   static Future<List<Burger>> getAllBurgers() async {
-    var uri = Uri.http('10.0.2.2:5000', '/api/burger');
+    var uri = Uri.https('urchin-app-3onl3.ondigitalocean.app', '/api/burger');
     final response = await http.get(uri, headers: {
       'Content-Type': 'application/json',
     });
