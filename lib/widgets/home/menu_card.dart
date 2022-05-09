@@ -30,7 +30,7 @@ class MenuCard extends StatelessWidget {
                   topLeft: Radius.circular(6.r),
                   topRight: Radius.circular(6.r),
                 ),
-                child: Image.asset(
+                child: Image.network(
                   menu.imgPath,
                   fit: BoxFit.fitWidth,
                 ),

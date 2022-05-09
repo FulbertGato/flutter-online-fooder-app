@@ -35,7 +35,7 @@ class Menu {
     }
 
     return Menu(
-      imgPath: "assets/img/food/tamago.png",
+      imgPath: "http://10.0.2.2:5000/${json['image']}",
       title: json['name'] as String,
       desc: json['description'] as String,
       duration: json['cookingTime'] as String,

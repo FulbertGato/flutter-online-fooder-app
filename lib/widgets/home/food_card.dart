@@ -30,7 +30,7 @@ class FoodCard extends StatelessWidget {
                   topLeft: Radius.circular(6.r),
                   topRight: Radius.circular(6.r),
                 ),
-                child: Image.asset(
+                child: Image.network(
                   food.imgPath,
                   fit: BoxFit.fitWidth,
                 ),

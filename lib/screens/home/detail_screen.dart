@@ -74,7 +74,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               margin: EdgeInsets.only(right: 16.w),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6.r),
-                                child: Image.asset(
+                                child: Image.network(
                                   widget.burger.imgPath,
                                   fit: BoxFit.cover,
                                 ),

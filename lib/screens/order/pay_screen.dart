@@ -298,7 +298,8 @@ class PayScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () => {    
-                     // OrderService.createOrder(),
+                     OrderService.createOrder(),
+                     CartService.clearCart(),
 
                      Navigator.of(context).pushReplacementNamed(
                       RouteGenerator.successOrder),

@@ -43,7 +43,7 @@ class authService {
     user.firstName = data['first_name'];
     user.lastName = data['last_name'];
     user.phone = data['phone'];
-    user.password = data['password'];
+    user.password = '';
 
     authService.user = user;
     isLoggedIn = true;
@@ -67,7 +67,7 @@ class authService {
     );
 
     var data = json.decode(response.body);
-    if (data['error'] != null) {
+    if (data['status'] == "error") {
       print(response.body);
       isLoggedIn = false;
       return false;

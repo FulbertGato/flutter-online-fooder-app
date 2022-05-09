@@ -1,8 +1,8 @@
 class Order {
   final String shopPic;
   final String shopName;
-  final String price;
-  final List<String> foods;
+  final double price;
+ 
   final String image;
 
   const Order({
@@ -10,6 +10,17 @@ class Order {
     required this.shopPic,
     required this.image,
     required this.price,
-    required this.foods,
+    
   });
+
+  factory Order.fromJson(dynamic json) {
+    return Order(
+      shopName: 'Brazil Burger',
+      shopPic: 'assets/img/totsuki.svg',
+      price: json['total'] as double,
+      image: "assets/img/food/okonomiyaki.png",
+    );
+  }
+
+  
 }

@@ -60,8 +60,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       int max = 9999;
       rnd = Random();
       int randomNumber = rnd.nextInt(max - min) + min;
-     // String code = randomNumber.toString();
-     String code = '1234';
+      String code = randomNumber.toString();
+     //String code = '1234';
       User user = User(
         lastName: nameController.text,
         email: emailController.text,
@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         firstName: "",
       );
       ScreenArguments args = ScreenArguments( phoneController.text,code,user);
-      //NotificationService.sendSmsCompte(phoneController.text, code);
+      NotificationService.sendSmsCompte(phoneController.text, code);
       Navigator.of(context).pushNamed(RouteGenerator.verification,
           arguments: args);
     }else{

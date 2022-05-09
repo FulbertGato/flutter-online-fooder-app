@@ -71,23 +71,14 @@ class _DetailMenuScreenState extends State<DetailMenuScreen> {
                               margin: EdgeInsets.only(right: 16.w),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6.r),
-                                child: Image.asset(
-                                  'assets/img/food/tamago.png',
+                                child: Image.network(
+                                  widget.menu.imgPath,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 200.h,
-                              width: 350.w,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6.r),
-                                child: Image.asset(
-                                  'assets/img/food/tamago.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
+                            
+                            
                           ],
                         ),
                       ),

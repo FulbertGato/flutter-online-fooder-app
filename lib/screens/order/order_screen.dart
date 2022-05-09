@@ -1,4 +1,5 @@
 import 'package:customer_app/services/cart/cart_service.dart';
+import 'package:customer_app/services/order/order_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,11 +9,12 @@ import '../../config/route.dart';
 import '../../models/order.dart';
 
 class OrderScreen extends StatelessWidget {
-  const OrderScreen({ Key? key }) : super(key: key);
+  const OrderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<Order> orders = [];
+    OrderService.getMyOrders();
+    final List<Order> orders = OrderService.myOrders;
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -77,7 +79,8 @@ class OrderScreen extends StatelessWidget {
 }
 
 class OrderCard extends StatelessWidget {
-   const OrderCard({Key? key, 
+  const OrderCard({
+    Key? key,
     this.isLast = false,
     required this.order,
   }) : super(key: key);
@@ -118,23 +121,6 @@ class OrderCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...List.generate(
-                  order.foods.length,
-                  (index) => Column(
-                    children: [
-                      Text(
-                        order.foods[index],
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                    ],
-                  ),
-                ),
                 Row(
                   children: [
                     SvgPicture.asset(
@@ -154,7 +140,7 @@ class OrderCard extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        '\$${order.price}',
+                        'CFA ${order.price}',
                       ),
                     )
                   ],
@@ -176,7 +162,7 @@ class OrderCard extends StatelessWidget {
 }
 
 class CheckoutCard extends StatelessWidget {
-   const CheckoutCard({Key? key}) : super(key: key);
+  const CheckoutCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
